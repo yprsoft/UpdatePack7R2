@@ -1,7 +1,7 @@
 name: Windows7x64ALL
 
-#on: workflow_dispatch
-on: [push, pull_request]
+on: workflow_dispatch
+#on: [push, pull_request]
 
 env:
   UpdatePack7R2_VERSION: '25.12.10'
@@ -13,10 +13,6 @@ jobs:
 
     steps:
 
-    # 检出本仓库
-    - name: Checkout repository
-      uses: actions/checkout@v5
-
     # 下载工具和镜像
     - name: Get Tools and Wim
       shell: pwsh
@@ -26,7 +22,6 @@ jobs:
         
         cd ..  #Directory: D:\a\UpdatePack7R2
 
-
         # 下载UpdatePack7R2
         curl -L -o UpdatePack7R2.exe https://github.com/yuanpeirong/UpdatePack7R2/releases/download/UpdatePack7R2-25.12.10/UpdatePack7R2-25.12.10.exe
 
@@ -34,21 +29,37 @@ jobs:
         curl -L -o install_Windows7x64ALL_2.7z.001 https://github.com/yuanpeirong/UpdatePack7R2/releases/download/Windows7x64ALL/install_Windows7x64ALL_2.7z.001
         curl -L -o install_Windows7x64ALL_2.7z.002 https://github.com/yuanpeirong/UpdatePack7R2/releases/download/Windows7x64ALL/install_Windows7x64ALL_2.7z.002
         7z x install_Windows7x64ALL_2.7z.001
-        
+        ls
+
     # 使用UpdatePack7R2.exe集成更新
     - name: UpdatePack7R2 Wim
       shell: cmd
       run: |
-        D:\a\UpdatePack7R2\UpdatePack7R2.exe /ie11 /WimFile=D:\a\UpdatePack7R2\install_Windows7x64ALL.wim /Index=4 /NoUSB /Optimize
+        D:\a\UpdatePack7R2\UpdatePack7R2.exe /ie11 /WimFile=D:\a\UpdatePack7R2\install_Windows7x64ALL.wim /Index=* /NoUSB /Optimize
 
     # 打包
     - name: Package binaries
       run: |
         #ls     #Directory: D:\a\UpdatePack7R2\UpdatePack7R2(即仓库目录)
-        7z a ${{env.FILE_NAME}}-${{env.UpdatePack7R2_VERSION}}.7z ../${{env.FILE_NAME}}.wim -mx=9
+        7z a -v1950M ${{env.FILE_NAME}}-${{env.UpdatePack7R2_VERSION}}.7z ../${{env.FILE_NAME}}.wim -mx=9
+        7z a UpdatePack7log.7z C:\WINDOWS\UpdatePack7.log
 
-    # 上传
+    # 上传日志
+    - uses: actions/upload-artifact@v4
+      with:
+        name: UpdatePack7log
+        path: UpdatePack7log.7z
+
+    # 上传镜像
     - uses: actions/upload-artifact@v4
       with:
         name: ${{env.FILE_NAME}}-${{env.UpdatePack7R2_VERSION}}
-        path: ${{env.FILE_NAME}}-${{env.UpdatePack7R2_VERSION}}.7z
+        path: ${{env.FILE_NAME}}-${{env.UpdatePack7R2_VERSION}}.7z.*
+
+    # 发布镜像
+    - name: Release
+      uses: softprops/action-gh-release@v2
+      with:
+        tag_name: ${{env.FILE_NAME}}-${{env.UpdatePack7R2_VERSION}}
+        release_name: ${{env.FILE_NAME}}-${{env.UpdatePack7R2_VERSION}}
+        files: ${{env.FILE_NAME}}-${{env.UpdatePack7R2_VERSION}}.7z.*
