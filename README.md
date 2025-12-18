@@ -8,10 +8,10 @@
 2. UpdatePack7R2地址: https://blog.simplix.info/update7/
 
 ## 版本说明
-- `install_Windows7x64ENTERPRISE.wim`：Windows 7 x64 SP旗舰版(含家庭普通版、家庭高级版、专业版)
+- `install_Windows7x64ENTERPRISE.wim`：Windows 7 x64 SP1旗舰版(含家庭普通版、家庭高级版、专业版)
 - `install_Windows7x64ULTIMATE.wim`：Windows 7 x64 SP1企业版
 - `install_Windows7x64ALL.wim`：Windows 7 x64 SP1旗舰版(含家庭普通版、家庭高级版、专业版)+企业版
-- `install_Windows7x86ENTERPRISE.wim`：Windows 7 x86 SP旗舰版(含简易版、家庭普通版、家庭高级版、专业版)
+- `install_Windows7x86ENTERPRISE.wim`：Windows 7 x86 SP1旗舰版(含简易版、家庭普通版、家庭高级版、专业版)
 - `install_Windows7x86ULTIMATE.wim`：Windows 7 x86 SP1企业版
 - `install_Windows7x86ALL.wim`：Windows 7 x86 SP1旗舰版(含家庭普通版、家庭高级版、专业版)+企业版
 - 以上均为不带U版本，参考说明[https://bbs.pcbeta.com/viewthread-1976287-1-1.html](https://bbs.pcbeta.com/viewthread-1976287-1-1.html)
