@@ -4,7 +4,7 @@ on: workflow_dispatch
 #on: [push, pull_request]
 
 env:
-  UpdatePack7R2_VERSION: '25.12.10_esd'
+  UpdatePack7R2_VERSION: '26.1.15_esd'
   FILE_NAME: install_Windows7x64ENTERPRISE
 
 jobs:
@@ -23,7 +23,7 @@ jobs:
         cd ..  #Directory: D:\a\UpdatePack7R2
 
         # 下载UpdatePack7R2
-        curl -L -o UpdatePack7R2.exe https://github.com/yuanpeirong/UpdatePack7R2/releases/download/UpdatePack7R2/UpdatePack7R2-25.12.10.exe
+        curl -L -o UpdatePack7R2.exe https://github.com/yuanpeirong/UpdatePack7R2/releases/download/UpdatePack7R2/UpdatePack7R2-26.1.15.exe
 
         # 下载Windows7x64ALL.wim镜像
         curl -L -o ${{env.FILE_NAME}}.7z.001 https://github.com/yuanpeirong/UpdatePack7R2/releases/download/Windows7x64/install_Windows7x64ENTERPRISE.7z.001
