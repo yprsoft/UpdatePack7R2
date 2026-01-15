@@ -4,8 +4,9 @@
 1. 本项目的主要目的是使用UpdatePack7R2自动集成Windows 7 SP1更新(使用GithubActions自动构建)
 
 ## 地址
-1. 本仓库地址: https://github.com/yuanpeirong/UpdatePack7R2
-2. UpdatePack7R2地址: https://blog.simplix.info/update7/
+1. 本仓库地址: https://github.com/yuanpeirong/UpdatePack7R2 (只发布源码)
+2. 备用仓库地址: https://github.com/yprsoft/UpdatePack7R2 (发布源码+镜像)
+3. UpdatePack7R2地址: https://blog.simplix.info/update7/
 
 ## 版本说明
 
